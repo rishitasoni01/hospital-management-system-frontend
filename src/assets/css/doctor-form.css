@@ -1,0 +1,176 @@
+.doctor-container{
+    padding:25px;
+    background:#f8fafc;
+    min-height:100vh;
+}
+
+.doctor-breadcrumb{
+    font-size:13px;
+    color:#6b7280;
+    margin-bottom:12px;
+}
+
+.doctor-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.doctor-header h2{
+    font-weight:700;
+    color:#111827;
+    margin:0;
+}
+
+.doctor-header p{
+    color:#6b7280;
+    margin-top:5px;
+    margin-bottom:0;
+}
+
+.doctor-image-box{
+
+    width:170px;
+    height:170px;
+    border:2px dashed #cbd5e1;
+    border-radius:15px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:auto;
+    cursor:pointer;
+    overflow:hidden;
+    transition:.3s;
+    background:white;
+
+}
+
+.doctor-image-box:hover{
+
+    border-color:#2563eb;
+
+}
+
+.doctor-preview{
+
+    width:100%;
+    height:100%;
+    object-fit:cover;
+
+}
+
+.validation-card{
+
+    background:#0f172a;
+    color:white;
+    border:none;
+
+}
+
+.validation-card h5{
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:20px;
+
+}
+
+.validation-card ul{
+
+    padding-left:18px;
+    margin-bottom:0;
+
+}
+
+.validation-card li{
+
+    margin-bottom:10px;
+    font-size:14px;
+
+}
+
+.card{
+
+    border-radius:15px;
+
+}
+
+.card h4{
+
+    font-weight:600;
+
+}
+
+.form-label,
+label{
+
+    font-weight:600;
+    margin-bottom:7px;
+    color:#374151;
+
+}
+
+.form-control,
+.form-select{
+
+    border-radius:10px;
+    min-height:46px;
+    border:1px solid #d1d5db;
+
+}
+
+.form-control:focus,
+.form-select:focus{
+
+    border-color:#2563eb;
+    box-shadow:0 0 0 .15rem rgba(37,99,235,.15);
+
+}
+
+textarea.form-control{
+
+    min-height:120px;
+
+}
+
+.btn-primary{
+
+    background:#2563eb;
+    border:none;
+    border-radius:8px;
+    padding:10px 24px;
+
+}
+
+.btn-primary:hover{
+
+    background:#1d4ed8;
+
+}
+
+.btn-light{
+
+    border-radius:8px;
+
+}
+
+@media(max-width:992px){
+
+.doctor-header{
+
+flex-direction:column;
+align-items:flex-start;
+gap:15px;
+
+}
+
+.doctor-image-box{
+
+width:140px;
+height:140px;
+
+}
+
+}

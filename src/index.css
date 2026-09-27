@@ -1,0 +1,40 @@
+body {
+  background: #f5f7fb;
+}
+
+.card {
+  border-radius: 14px;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+.sidebar-item:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.active {
+  background: #2563eb !important;
+  color: white;
+  font-weight: 500;
+}
+.sidebar-item:hover:not(.active) {
+  background: rgba(255,255,255,0.1);
+  transition: 0.2s;
+}
+
+
+
+.table th {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.page-link {
+  border-radius: 8px;
+}
