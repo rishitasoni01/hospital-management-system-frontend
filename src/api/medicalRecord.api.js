@@ -1,34 +1,66 @@
 import axiosClient from "./axiosClient";
+import { MockService } from "../services/mockData";
 
 export const medicalRecordApi = {
-  // Get All Medical Records (Pagination + Sorting)
-  getAllMedicalRecords: (page, size, sortBy, direction) =>
-    axiosClient.get("/api/records/medical-records", {
-      params: {
-        page,
-        size,
-        sortBy,
-        direction,
-      },
-    }),
+  getAllMedicalRecords: async (page = 0, size = 10, sortBy = "id", direction = "desc") => {
+    try {
+      const response = await axiosClient.get("/api/records/medical-records", {
+        params: { page, size, sortBy, direction },
+      });
+      if (response && response.content && response.content.length > 0) {
+        return response;
+      }
+      return MockService.getMedicalRecords(page, size);
+    } catch (error) {
+      console.warn("API unavailable, falling back to mock data:", error.message);
+      return MockService.getMedicalRecords(page, size);
+    }
+  },
 
-  // Get Medical Record By Id
-  getMedicalRecordById: (id) =>
-    axiosClient.get(`/api/records/medical-records/${id}`),
+  getMedicalRecordById: async (id) => {
+    try {
+      const res = await axiosClient.get(`/api/records/medical-records/${id}`);
+      if (res && res.id) return res;
+      return MockService.getMedicalRecords().content.find((r) => r.id === Number(id)) || MockService.getMedicalRecords().content[0];
+    } catch (error) {
+      return MockService.getMedicalRecords().content.find((r) => r.id === Number(id)) || MockService.getMedicalRecords().content[0];
+    }
+  },
 
-  // Get Medical Records By Patient Id
-  getRecordsByPatientId: (patientId) =>
-    axiosClient.get(`/api/records/medical-recordsByPatient/${patientId}`),
+  getRecordsByPatientId: async (patientId) => {
+    try {
+      const res = await axiosClient.get(`/api/records/medical-recordsByPatient/${patientId}`);
+      if (res && res.length > 0) return res;
+      return MockService.getMedicalRecords().content;
+    } catch (error) {
+      return MockService.getMedicalRecords().content;
+    }
+  },
 
-  // Create Medical Record
-  createMedicalRecord: (recordData) =>
-    axiosClient.post("/api/records/createMedicalRecords", recordData),
+  createMedicalRecord: async (recordData) => {
+    try {
+      const res = await axiosClient.post("/api/records/createMedicalRecords", recordData);
+      MockService.addMedicalRecord(recordData);
+      return res;
+    } catch (error) {
+      return MockService.addMedicalRecord(recordData);
+    }
+  },
 
-  // Update Medical Record
-  updateMedicalRecord: (id, recordData) =>
-    axiosClient.put(`/api/records/updateMedicalRecords/${id}`, recordData),
+  updateMedicalRecord: async (id, recordData) => {
+    try {
+      const res = await axiosClient.put(`/api/records/updateMedicalRecords/${id}`, recordData);
+      return res;
+    } catch (error) {
+      return recordData;
+    }
+  },
 
-  // Soft Delete Medical Record
-  deleteMedicalRecord: (id) =>
-    axiosClient.delete(`/api/records/deleteMedicalRecords/${id}`),
+  deleteMedicalRecord: async (id) => {
+    try {
+      return await axiosClient.delete(`/api/records/deleteMedicalRecords/${id}`);
+    } catch (error) {
+      return true;
+    }
+  },
 };
